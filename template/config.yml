@@ -1,0 +1,39 @@
+# Network
+encoder_type:
+decoder_type: AttnDecoderRNN #InputFeedDecoder, AttnDecoderRNN, ScheduledDecoder
+rnn_type: LSTM #RNN, LSTM, GRU
+bidirectional: true
+embedding_size: 500
+hidden_size: 500
+num_layers: 2
+dropout: 0.3
+dropout_ev: 0.1
+atten_model: dot #general, dot, none  !!!!! base use dot 
+
+dhidden_size: 128
+aux_size: 256
+aux_nums: 4
+
+mem_gate: true
+gate_vector: true
+src_attention: true
+
+# Misc
+use_cuda: true
+random_seed: 19940117
+
+# Train
+optim_method: adam #adadelta, adam, sgd
+max_grad_norm: 5
+learning_rate: 0.001
+learning_rate_decay: 0.9
+start_decay_at: 8
+weight_decay: 0.000001 #  weight decay(L2 penalty)
+num_train_epochs: 20
+steps_per_stats: 100
+steps_per_eval: 1000
+train_batch_size: 128
+train_shard_size: 32
+start_epoch_at: 
+
+out_dir: ./out/out_dir # path to save model

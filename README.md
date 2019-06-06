@@ -18,6 +18,12 @@ pytorch==0.3.1
 
 The data we used in our paper are from [Wu et al, 2019](https://github.com/MarkWuNLP/ResponseEdit)
 
+some sample data are in the `data` folder. The format is 
+
+`query | response | retrieved query | retrieved response`
+
+(sentences in each line are split by the symbol `|`)
+
 ### Citation
 
 ```
