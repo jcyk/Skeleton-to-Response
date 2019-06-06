@@ -1,6 +1,25 @@
 # Skeleton-to-Response
 
-Will be released soon.
+### Requirement 
+
+pytorch==0.3.1
+
+### Usage
+
+- Cascaded Model
+  1. pretrain skeleton generator: go to the `template` folder, use `train.sh`
+  2. pretrain response generator: go to the `pretrain` folder, use `train.sh`.
+  3. train both with RL: go to the `hard` folder, use `train.sh`
+  4. Test: go for `hard/translate.sh`
+- Joint Model
+  - Use the `train.sh` and `translate.sh` in the `soft` folder
+
+### Data
+
+The data we used in our paper are from [Wu et al, 2019](https://github.com/MarkWuNLP/ResponseEdit)
+
+### Citation
+
 ```
 @inproceedings{cai-etal-2019-skeleton,
     title = "Skeleton-to-Response: Dialogue Generation Guided by Retrieval Memory",
