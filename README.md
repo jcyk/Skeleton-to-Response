@@ -9,8 +9,9 @@ pytorch==0.3.1
 - Cascaded Model
   1. pretrain skeleton generator: go to the `template` folder, use `train.sh`
   2. pretrain response generator: go to the `pretrain` folder, use `train.sh`.
-  3. train both with RL: go to the `hard` folder, use `train.sh`
-  4. Test: go for `hard/translate.sh`
+  3. pretrain critic: go to the `hard` folder, use `train_critic.sh`
+  4. train both skeleton generator and response generator with RL: go to the `hard` folder, use `train.sh`
+  5. Test: go for `hard/translate.sh`
 - Joint Model
   - Use the `train.sh` and `translate.sh` in the `soft` folder
 

@@ -114,7 +114,7 @@ def check_save_model_path(args, opt):
     shutil.copy(args.config, os.path.join(opt.out_dir,'config.yml'))
 
 
-def train_model(opt, model, critic, train_iter, valid_iter, fields, optimR, lr_schedulerR, optimT, lr_schedulerT, optimC, lr_schedulerC, start_epoch_at):
+def train_model(train_critic, opt, model, critic, train_iter, valid_iter, fields, optimR, lr_schedulerR, optimT, lr_schedulerT, optimC, lr_schedulerC, start_epoch_at):
     train_loss = nmt.NMTLossCompute(model.generator, fields['tgt'].vocab)
     valid_loss = nmt.NMTLossCompute(model.generator, fields['tgt'].vocab)
 
@@ -149,14 +149,18 @@ def train_model(opt, model, critic, train_iter, valid_iter, fields, optimR, lr_s
         for step_batch, batch in enumerate(train_iter):
             global_step += 1
             if global_step % 6 == -1 % global_step:
-                T_turn = False
+                T_turn = True
                 C_turn = False
-                R_turn = True
+                R_turn = False
             else:
                 T_turn = False
                 C_turn = False
                 R_turn = True
 
+            if train_critic:
+                T_turn = False
+                C_turn = True
+                R_turn = False
             if C_turn:
                 model.template_generator.eval()
                 model.response_generator.eval()
@@ -288,7 +292,8 @@ def main():
             critic = critic.cuda()
     
     # Do training.
-    train_model(opt, model, critic, train, valid, fields, optimR, lr_schedulerR, optimT, lr_schedulerT, optimC, lr_schedulerC, start_epoch_at)
+    train_critic = (args.critic_model is None)
+    train_model(train_critic, opt, model, critic, train, valid, fields, optimR, lr_schedulerR, optimT, lr_schedulerT, optimC, lr_schedulerC, start_epoch_at)
 
 if __name__ == '__main__':
     main()
