@@ -41,5 +41,5 @@ valid_batch_size: 32
 
 
 use_ev: false
-use_critic: false
+use_critic: true
 out_dir: ./out/out_dir # path to save model
